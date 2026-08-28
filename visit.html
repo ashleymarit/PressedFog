@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visit — Pressed Fog</title>
+  <meta name="description" content="How to visit or write. Demo contact for Pressed Fog, Half Moon Bay. (650) 555-0147.">
+  <link rel="canonical" href="https://pressed-fog.netlify.app/visit.html">
+  <meta property="og:title" content="Visit — Pressed Fog">
+  <meta property="og:description" content="Write first. Demo shop, Half Moon Bay. The number does not ring.">
+  <meta property="og:url" content="https://pressed-fog.netlify.app/visit.html">
+  <meta property="og:image" content="https://pressed-fog.netlify.app/images/desk-notebook.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#f3ead6">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&amp;family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">Pressed Fog</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="specimens.html">Specimens</a>
+      <a href="seeds.html">Seeds</a>
+      <a href="visit.html" aria-current="page">Visit</a>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <p class="page-kicker">Visit / write</p>
+    <h1>Write first.</h1>
+    <div class="letter">
+      <div class="letter-body">
+        <p>This is a studio demo. The telephone does not ring. We will not invent shop hours on this page.</p>
+        <p>If you were writing: a name, and what you want to look at — a sheet, a packet, the paper they live on. Bring a dry specimen if you have one; we will tell you if it will take the press.</p>
+        <p class="address">
+          2 Folio Lane<br>
+          Half Moon Bay<br>
+          (not a real street)<br><br>
+          <a class="phone" href="tel:+16505550147">(650) 555-0147</a><br>
+          <a href="mailto:desk@pressedfog.demo">desk@pressedfog.demo</a>
+        </p>
+      </div>
+      <form class="field-form" id="note-form" action="#" method="post">
+        <span class="tape tl" aria-hidden="true"></span>
+        <h2>A note for the table</h2>
+        <label for="name">Name</label>
+        <input id="name" name="name" autocomplete="name" required>
+        <label for="looking">Looking for</label>
+        <input id="looking" name="looking" placeholder="A sheet, a packet, paper">
+        <label for="note">Note</label>
+        <textarea id="note" name="note" placeholder="What you want to see. Nothing is sent."></textarea>
+        <button class="btn" type="submit">Leave a note (demo)</button>
+        <p class="form-note" id="form-note" role="status"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Demo shop · Half Moon Bay · (650) 555-0147</p>
+    <p class="demo">Studio demo</p>
+  </footer>
+  <script src="site.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("note-form");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var note = document.getElementById("form-note");
+        if (note) {
+          note.textContent = "Studio demo — nothing was sent. The 555 number is a placeholder.";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
