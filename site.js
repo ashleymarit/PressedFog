@@ -1,65 +1,108 @@
 (function () {
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.documentElement.classList.toggle("reduced", reduced);
+  "use strict";
 
-  pressSheets(reduced);
-  typeLabels(reduced);
+  var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var reveals = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
+  var sheets = Array.prototype.slice.call(document.querySelectorAll("[data-press]"));
+  var labels = Array.prototype.slice.call(document.querySelectorAll("[data-type]"));
+  var observers = [];
 
-  function pressSheets(reduced) {
-    var sheets = document.querySelectorAll(".sheet[data-press]");
-    if (!sheets.length) return;
+  if (motion.matches || !("IntersectionObserver" in window)) {
+    finishEverything();
+    return;
+  }
 
-    function flatten(el) {
-      el.classList.add("pressed");
-    }
+  observeReveals();
+  observeSheets();
+  observeLabels();
 
-    if (reduced || !("IntersectionObserver" in window)) {
-      sheets.forEach(flatten);
-      return;
-    }
-
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            flatten(entry.target);
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.28, rootMargin: "0px 0px -8% 0px" }
-    );
-
-    sheets.forEach(function (el) {
-      io.observe(el);
+  if (motion.addEventListener) {
+    motion.addEventListener("change", function (event) {
+      if (event.matches) finishEverything();
     });
   }
 
-  function typeLabels(reduced) {
-    var nodes = document.querySelectorAll("[data-type]");
-    nodes.forEach(function (el) {
-      var text = el.getAttribute("data-type") || "";
-      if (reduced) {
-        el.textContent = text;
+  function observeReveals() {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+    reveals.forEach(function (element) {
+      observer.observe(element);
+    });
+    observers.push(observer);
+  }
+
+  function observeSheets() {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-pressed");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.16, rootMargin: "0px 0px -4% 0px" });
+
+    sheets.forEach(function (element) {
+      observer.observe(element);
+    });
+    observers.push(observer);
+  }
+
+  function observeLabels() {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        typeLabel(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.75 });
+
+    labels.forEach(function (element) {
+      observer.observe(element);
+    });
+    observers.push(observer);
+  }
+
+  function typeLabel(element) {
+    if (element.dataset.typed === "true") return;
+    element.dataset.typed = "true";
+    var text = element.getAttribute("data-type") || "";
+    var index = 0;
+    element.textContent = "";
+
+    function addCharacter() {
+      if (motion.matches) {
+        element.textContent = text;
         return;
       }
-      el.textContent = "";
-      var caret = document.createElement("span");
-      caret.className = "caret";
-      caret.setAttribute("aria-hidden", "true");
-      el.appendChild(caret);
-      var i = 0;
-      var delay = 420;
-      function tick() {
-        if (i >= text.length) {
-          return;
-        }
-        el.insertBefore(document.createTextNode(text.charAt(i)), caret);
-        i += 1;
-        var wait = text.charAt(i - 1) === " " ? 38 : 52;
-        window.setTimeout(tick, wait);
-      }
-      window.setTimeout(tick, delay);
+      if (index >= text.length) return;
+      var character = text.charAt(index);
+      element.textContent += character;
+      index += 1;
+      var pause = /[.,]/.test(character) ? 180 : character === " " ? 34 : 52;
+      window.setTimeout(addCharacter, pause);
+    }
+
+    window.setTimeout(addCharacter, 260);
+  }
+
+  function finishEverything() {
+    observers.forEach(function (observer) {
+      observer.disconnect();
+    });
+    reveals.forEach(function (element) {
+      element.classList.add("is-visible");
+    });
+    sheets.forEach(function (element) {
+      element.classList.add("is-pressed");
+    });
+    labels.forEach(function (element) {
+      element.textContent = element.getAttribute("data-type") || "";
+      element.dataset.typed = "true";
     });
   }
 })();
