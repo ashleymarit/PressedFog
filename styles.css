@@ -31,7 +31,6 @@ body {
   min-width: 320px;
   color: var(--ink);
   background:
-    linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), var(--rule-light) calc(100% - 1px)) 0 0 / 25% 100%,
     radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.72), transparent 28rem),
     var(--fog);
   font-family: var(--serif);
@@ -116,7 +115,7 @@ a:hover {
   z-index: 5;
   display: grid;
   grid-template-columns: 1.1fr 0.8fr 2fr;
-  gap: 2rem;
+  gap: clamp(2rem, 5vw, 6rem);
   align-items: end;
   min-height: 9rem;
   padding: 1.5rem clamp(1.25rem, 4vw, 4.75rem) 1.35rem;
@@ -153,17 +152,16 @@ a:hover {
 }
 
 .site-nav {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-left: 1px solid var(--rule);
+  display: flex;
+  justify-content: flex-end;
+  gap: clamp(1.5rem, 3.5vw, 3.8rem);
 }
 
 .site-nav a {
   position: relative;
   display: flex;
-  min-height: 3.2rem;
-  padding: 1.1rem 0.55rem 0 0.8rem;
-  border-right: 1px solid var(--rule);
+  min-height: 2.5rem;
+  padding: 1.1rem 0 0;
   color: var(--ink-soft);
   font: 400 0.64rem/1 var(--mono);
   letter-spacing: 0.04em;
@@ -237,7 +235,7 @@ a:hover {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(17rem, 0.77fr) minmax(30rem, 1.45fr) minmax(7rem, 0.3fr);
+  grid-template-columns: minmax(17rem, 0.72fr) minmax(30rem, 1.38fr) minmax(10rem, 0.46fr);
   gap: clamp(1.25rem, 3vw, 3.6rem);
   align-items: start;
   min-height: calc(100vh - 9rem);
@@ -245,14 +243,7 @@ a:hover {
 }
 
 .hero::after {
-  content: "PRESSED / COASTSIDE / ARCHIVE 01";
-  position: absolute;
-  right: clamp(1.25rem, 4vw, 4.75rem);
-  bottom: 1rem;
-  color: var(--lichen);
-  font: 300 0.52rem/1 var(--mono);
-  letter-spacing: 0.12em;
-  writing-mode: vertical-rl;
+  content: none;
 }
 
 .hero-copy {
@@ -322,7 +313,7 @@ a:hover {
   --tape-delay: 820ms;
   --tape-opacity: 0.98;
   position: absolute;
-  z-index: 4;
+  z-index: 8;
   display: block;
   width: 7.4rem;
   height: 2.5rem;
@@ -331,9 +322,9 @@ a:hover {
   background-position: center;
   background-size: 100% 100%;
   filter:
-    drop-shadow(0 0.16rem 0.09rem rgba(51, 42, 26, 0.34))
-    drop-shadow(0 0.42rem 0.38rem rgba(51, 42, 26, 0.17));
-  mix-blend-mode: multiply;
+    drop-shadow(0 0.18rem 0.1rem rgba(51, 42, 26, 0.42))
+    drop-shadow(0 0.48rem 0.42rem rgba(51, 42, 26, 0.2));
+  mix-blend-mode: normal;
   opacity: var(--tape-opacity);
   transform: rotate(var(--tape-angle));
   transform-origin: 12% 50%;
@@ -426,7 +417,7 @@ a:hover {
 .tape-fern-a {
   --tape-angle: -3.5deg;
   --tape-delay: 720ms;
-  top: 0.3%;
+  top: -0.9rem;
   left: 9%;
   width: 8rem;
   height: 2.7rem;
@@ -436,7 +427,7 @@ a:hover {
   --tape-angle: 3.8deg;
   --tape-delay: 980ms;
   right: 12%;
-  bottom: 0.2%;
+  bottom: -0.75rem;
   width: 6.7rem;
   height: 2.4rem;
 }
@@ -444,7 +435,7 @@ a:hover {
 .tape-poppy-a {
   --tape-angle: 5.5deg;
   --tape-delay: 700ms;
-  top: 0.15%;
+  top: -0.8rem;
   right: 7%;
   width: 8.4rem;
   height: 2.8rem;
@@ -454,7 +445,7 @@ a:hover {
   --tape-angle: 87deg;
   --tape-delay: 1030ms;
   top: 38%;
-  left: 0.15rem;
+  left: -2.1rem;
   width: 6.2rem;
   height: 2.2rem;
   --tape-opacity: 0.92;
@@ -463,7 +454,7 @@ a:hover {
 .tape-kelp-a {
   --tape-angle: -1.5deg;
   --tape-delay: 740ms;
-  top: 0.1%;
+  top: -0.85rem;
   left: 35%;
   width: 7.4rem;
   height: 2.6rem;
@@ -472,7 +463,7 @@ a:hover {
 .tape-kelp-b {
   --tape-angle: 86deg;
   --tape-delay: 1010ms;
-  right: 0.15rem;
+  right: -2.1rem;
   bottom: 17%;
   width: 6.2rem;
   height: 2.2rem;
@@ -481,7 +472,7 @@ a:hover {
 .tape-yarrow-a {
   --tape-angle: 5deg;
   --tape-delay: 730ms;
-  bottom: 0.2%;
+  bottom: -0.8rem;
   left: 5%;
   width: 8.1rem;
   height: 2.7rem;
@@ -490,7 +481,7 @@ a:hover {
 .tape-yarrow-b {
   --tape-angle: -4deg;
   --tape-delay: 970ms;
-  top: 0.25%;
+  top: -0.75rem;
   right: 25%;
   width: 6.5rem;
   height: 2.3rem;
@@ -511,19 +502,16 @@ a:hover {
 }
 
 .margin-note {
-  position: absolute;
-  right: -2rem;
-  bottom: -4rem;
-  width: 15rem;
-  min-height: 5rem;
-  padding: 1rem 1.2rem;
+  position: relative;
+  width: min(100%, 17rem);
+  min-height: 2rem;
+  margin: 0.8rem 0 0 auto;
+  padding: 0.55rem 0 0;
+  border-top: 1px solid var(--rule);
   color: var(--ink);
-  background:
-    linear-gradient(var(--rule-light) 1px, transparent 1px) 0 0 / 100% 1.45rem,
-    var(--paper);
-  box-shadow: 0.4rem 0.6rem 1rem rgba(39, 34, 24, 0.12);
-  font: 300 0.65rem/1.45rem var(--mono);
-  transform: rotate(-2deg);
+  background: transparent;
+  box-shadow: none;
+  font: 300 0.6rem/1.4 var(--mono);
 }
 
 .type-note [data-type]::after,
@@ -542,50 +530,61 @@ a:hover {
   50% { opacity: 0; }
 }
 
-.hero-index {
-  display: flex;
-  min-height: 31rem;
-  flex-direction: column;
-  align-items: center;
-  padding-left: 1.2rem;
-  border-left: 1px solid var(--rule);
+.hero-specimen {
+  position: relative;
+  min-height: 28rem;
 }
 
-.index-number,
-.hero-index p {
-  font: 300 0.53rem/1.4 var(--mono);
-  letter-spacing: 0.08em;
+.mini-folio {
+  align-self: start;
+  width: 100%;
+  margin: 8.5rem 0 0;
+}
+
+.js .mini-folio.is-pressed {
+  animation-delay: 320ms;
+}
+
+.mini-folio-paper {
+  position: relative;
+  padding: 0.38rem;
+  background: var(--paper);
+  box-shadow:
+    0 0 0 1px rgba(23, 37, 31, 0.08),
+    0.45rem 0.65rem 0 rgba(23, 37, 31, 0.07),
+    0 1.5rem 2.5rem rgba(39, 34, 24, 0.16);
+}
+
+.mini-folio-paper img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.mini-folio figcaption {
+  margin-top: 0.7rem;
+  color: var(--ink-soft);
+  font: 300 0.52rem/1.45 var(--mono);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  writing-mode: vertical-rl;
 }
 
-.hero-index p {
-  margin: 1.5rem 0 auto;
-  color: var(--lichen);
+.tape-mini {
+  --tape-angle: -4deg;
+  --tape-delay: 1080ms;
+  top: -0.75rem;
+  left: 18%;
+  width: 5.2rem;
+  height: 1.85rem;
 }
 
-.ink-stem {
-  width: 4.7rem;
-  overflow: visible;
-}
-
-.ink-stem path {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-
-.is-visible .ink-stem path,
-.ink-stem path {
-  animation: draw-ink 3.2s 0.45s cubic-bezier(0.3, 0.1, 0.2, 1) forwards;
-}
-
-@keyframes draw-ink {
-  to { stroke-dashoffset: 0; }
+.tape-mini-second {
+  --tape-angle: 5deg;
+  --tape-delay: 1290ms;
+  right: 8%;
+  bottom: -0.72rem;
+  width: 4.6rem;
+  height: 1.7rem;
 }
 
 .cabinet {
@@ -795,10 +794,12 @@ a:hover {
 
 .paper-edge {
   position: relative;
+  overflow: visible;
   padding: clamp(0.5rem, 1vw, 0.9rem);
   background: var(--paper);
-  clip-path: polygon(0.2% 0.6%, 5% 0.25%, 12% 0.5%, 20% 0.1%, 31% 0.45%, 42% 0.15%, 54% 0.4%, 65% 0.2%, 76% 0.5%, 88% 0.2%, 99.7% 0.6%, 99.9% 16%, 99.6% 31%, 99.9% 49%, 99.6% 67%, 99.9% 83%, 99.5% 99.4%, 88% 99.7%, 76% 99.45%, 63% 99.8%, 50% 99.5%, 37% 99.75%, 22% 99.5%, 10% 99.8%, 0.3% 99.4%, 0.1% 82%, 0.4% 64%, 0.1% 46%, 0.4% 28%);
-  box-shadow: 0 2rem 4rem var(--shadow);
+  box-shadow:
+    0 0 0 1px rgba(23, 37, 31, 0.07),
+    0 1.6rem 3.2rem var(--shadow);
 }
 
 .paper-edge::before {
@@ -1010,7 +1011,7 @@ a:hover {
   height: 2rem;
   background: url("images/tape-linen-02.png") center / 100% 100% no-repeat;
   filter: drop-shadow(0 0.18rem 0.12rem rgba(51, 42, 26, 0.22));
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
   opacity: 0.88;
   transform: rotate(-4deg);
 }
@@ -1296,8 +1297,8 @@ a:hover {
     opacity: var(--tape-opacity);
     transform: rotate(var(--tape-angle));
     filter:
-      drop-shadow(0 0.16rem 0.09rem rgba(51, 42, 26, 0.34))
-      drop-shadow(0 0.42rem 0.38rem rgba(51, 42, 26, 0.17));
+      drop-shadow(0 0.18rem 0.1rem rgba(51, 42, 26, 0.42))
+      drop-shadow(0 0.48rem 0.42rem rgba(51, 42, 26, 0.2));
   }
 }
 
@@ -1321,8 +1322,27 @@ a:hover {
     grid-template-columns: 0.75fr 1.25fr;
   }
 
-  .hero-index {
-    display: none;
+  .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hero-table {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .hero-specimen {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 0;
+    padding: 1.75rem 0 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .mini-folio {
+    width: min(100%, 16rem);
+    margin: 0 0 0 auto;
   }
 
   .specimen-sheet {
@@ -1378,6 +1398,8 @@ a:hover {
   }
 
   .site-nav {
+    justify-content: space-between;
+    gap: 0.8rem;
     width: 100%;
     border-top: 1px solid var(--rule);
     border-left: 0;
@@ -1416,16 +1438,20 @@ a:hover {
     margin-top: 1rem;
   }
 
-  .margin-note {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: calc(100% - 2rem);
-    margin: -0.2rem 0 0 auto;
+  .hero-specimen {
+    display: block;
+    width: 100%;
+    padding-top: 2rem;
   }
 
-  .hero::after {
-    display: none;
+  .mini-folio {
+    width: min(68%, 17rem);
+    margin-left: auto;
+  }
+
+  .margin-note {
+    width: min(100%, 17rem);
+    margin: 0.8rem 0 0 auto;
   }
 
   .section-heading,
@@ -1607,13 +1633,9 @@ a:hover {
     opacity: var(--tape-opacity);
     transform: rotate(var(--tape-angle));
     filter:
-      drop-shadow(0 0.16rem 0.09rem rgba(51, 42, 26, 0.34))
-      drop-shadow(0 0.42rem 0.38rem rgba(51, 42, 26, 0.17));
+      drop-shadow(0 0.18rem 0.1rem rgba(51, 42, 26, 0.42))
+      drop-shadow(0 0.48rem 0.42rem rgba(51, 42, 26, 0.2));
     animation: none !important;
-  }
-
-  .ink-stem path {
-    stroke-dashoffset: 0;
   }
 
   .type-note [data-type]::after,
