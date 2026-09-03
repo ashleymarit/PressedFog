@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  document.documentElement.classList.add("js");
+
   var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var reveals = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
   var sheets = Array.prototype.slice.call(document.querySelectorAll("[data-press]"));
@@ -87,7 +89,8 @@
       window.setTimeout(addCharacter, pause);
     }
 
-    window.setTimeout(addCharacter, 260);
+    var isAttachedToSheet = Boolean(element.closest("[data-press]"));
+    window.setTimeout(addCharacter, isAttachedToSheet ? 1540 : 260);
   }
 
   function finishEverything() {
