@@ -320,23 +320,40 @@ a:hover {
 .tape-piece {
   --tape-angle: 0deg;
   --tape-delay: 820ms;
+  --tape-opacity: 0.98;
   position: absolute;
   z-index: 4;
   display: block;
-  width: 7rem;
-  height: 2.15rem;
+  width: 7.4rem;
+  height: 2.5rem;
   pointer-events: none;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   filter:
-    drop-shadow(0 0.16rem 0.08rem rgba(51, 42, 26, 0.25))
-    drop-shadow(0 0.34rem 0.32rem rgba(51, 42, 26, 0.1));
+    drop-shadow(0 0.16rem 0.09rem rgba(51, 42, 26, 0.34))
+    drop-shadow(0 0.42rem 0.38rem rgba(51, 42, 26, 0.17));
   mix-blend-mode: multiply;
-  opacity: 0.92;
+  opacity: var(--tape-opacity);
   transform: rotate(var(--tape-angle));
   transform-origin: 12% 50%;
   will-change: transform, filter, opacity;
+}
+
+.tape-piece::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 17%;
+  left: 1.5%;
+  width: 14%;
+  height: 66%;
+  background: linear-gradient(90deg, rgba(255, 251, 234, 0.6), rgba(187, 166, 117, 0.22));
+  clip-path: polygon(5% 2%, 94% 8%, 100% 92%, 0 98%);
+  box-shadow: -0.14rem 0.15rem 0.12rem rgba(61, 49, 29, 0.24);
+  opacity: 0.72;
+  transform: perspective(2rem) rotateY(-22deg);
+  transform-origin: right center;
 }
 
 .tape-piece::after {
@@ -346,6 +363,24 @@ a:hover {
   background: linear-gradient(168deg, rgba(255, 255, 255, 0.28), transparent 32% 67%, rgba(92, 72, 42, 0.12));
   border-radius: 50%;
   opacity: 0.55;
+}
+
+.tape-02::before {
+  right: 1.5%;
+  left: auto;
+  background: linear-gradient(270deg, rgba(255, 251, 234, 0.55), rgba(172, 149, 101, 0.2));
+  box-shadow: 0.14rem 0.14rem 0.12rem rgba(61, 49, 29, 0.22);
+  transform: perspective(2rem) rotateY(21deg);
+  transform-origin: left center;
+}
+
+.tape-03::before {
+  top: 21%;
+  left: 3%;
+  width: 9%;
+  height: 58%;
+  opacity: 0.48;
+  transform: perspective(2rem) rotateY(-13deg);
 }
 
 .tape-01 {
@@ -363,29 +398,29 @@ a:hover {
 .tape-home-a {
   --tape-angle: -4.5deg;
   --tape-delay: 760ms;
-  top: -0.72rem;
+  top: -0.12rem;
   left: 8%;
-  width: 8.2rem;
-  height: 2.5rem;
+  width: 9.4rem;
+  height: 3rem;
 }
 
 .tape-home-b {
   --tape-angle: 4deg;
   --tape-delay: 980ms;
   right: 7%;
-  bottom: -0.76rem;
-  width: 6.7rem;
-  height: 2.25rem;
+  bottom: -0.18rem;
+  width: 8rem;
+  height: 2.7rem;
 }
 
 .tape-home-c {
   --tape-angle: 88deg;
   --tape-delay: 1180ms;
   top: 41%;
-  left: -2.75rem;
-  width: 6.2rem;
-  height: 2rem;
-  opacity: 0.82;
+  left: -2.3rem;
+  width: 7rem;
+  height: 2.35rem;
+  --tape-opacity: 0.9;
 }
 
 .tape-fern-a {
@@ -393,7 +428,8 @@ a:hover {
   --tape-delay: 720ms;
   top: 0.3%;
   left: 9%;
-  width: 6.9rem;
+  width: 8rem;
+  height: 2.7rem;
 }
 
 .tape-fern-b {
@@ -401,7 +437,8 @@ a:hover {
   --tape-delay: 980ms;
   right: 12%;
   bottom: 0.2%;
-  width: 5.8rem;
+  width: 6.7rem;
+  height: 2.4rem;
 }
 
 .tape-poppy-a {
@@ -409,8 +446,8 @@ a:hover {
   --tape-delay: 700ms;
   top: 0.15%;
   right: 7%;
-  width: 7.4rem;
-  height: 2.25rem;
+  width: 8.4rem;
+  height: 2.8rem;
 }
 
 .tape-poppy-b {
@@ -418,9 +455,9 @@ a:hover {
   --tape-delay: 1030ms;
   top: 38%;
   left: 0.15rem;
-  width: 5.4rem;
-  height: 1.9rem;
-  opacity: 0.84;
+  width: 6.2rem;
+  height: 2.2rem;
+  --tape-opacity: 0.92;
 }
 
 .tape-kelp-a {
@@ -428,7 +465,8 @@ a:hover {
   --tape-delay: 740ms;
   top: 0.1%;
   left: 35%;
-  width: 6.4rem;
+  width: 7.4rem;
+  height: 2.6rem;
 }
 
 .tape-kelp-b {
@@ -436,8 +474,8 @@ a:hover {
   --tape-delay: 1010ms;
   right: 0.15rem;
   bottom: 17%;
-  width: 5.5rem;
-  height: 1.9rem;
+  width: 6.2rem;
+  height: 2.2rem;
 }
 
 .tape-yarrow-a {
@@ -445,7 +483,8 @@ a:hover {
   --tape-delay: 730ms;
   bottom: 0.2%;
   left: 5%;
-  width: 7.1rem;
+  width: 8.1rem;
+  height: 2.7rem;
 }
 
 .tape-yarrow-b {
@@ -453,8 +492,8 @@ a:hover {
   --tape-delay: 970ms;
   top: 0.25%;
   right: 25%;
-  width: 5.6rem;
-  height: 2rem;
+  width: 6.5rem;
+  height: 2.3rem;
 }
 
 .hero-table figcaption,
@@ -1254,11 +1293,11 @@ a:hover {
       drop-shadow(0 0.25rem 0.16rem rgba(51, 42, 26, 0.1));
   }
   100% {
-    opacity: 0.92;
+    opacity: var(--tape-opacity);
     transform: rotate(var(--tape-angle));
     filter:
-      drop-shadow(0 0.16rem 0.08rem rgba(51, 42, 26, 0.25))
-      drop-shadow(0 0.34rem 0.32rem rgba(51, 42, 26, 0.1));
+      drop-shadow(0 0.16rem 0.09rem rgba(51, 42, 26, 0.34))
+      drop-shadow(0 0.42rem 0.38rem rgba(51, 42, 26, 0.17));
   }
 }
 
@@ -1565,11 +1604,11 @@ a:hover {
   .js .press-object .tape-piece,
   .js .press-object:not(.is-pressed) .tape-piece,
   .js .press-object.is-pressed .tape-piece {
-    opacity: 0.92;
+    opacity: var(--tape-opacity);
     transform: rotate(var(--tape-angle));
     filter:
-      drop-shadow(0 0.16rem 0.08rem rgba(51, 42, 26, 0.25))
-      drop-shadow(0 0.34rem 0.32rem rgba(51, 42, 26, 0.1));
+      drop-shadow(0 0.16rem 0.09rem rgba(51, 42, 26, 0.34))
+      drop-shadow(0 0.42rem 0.38rem rgba(51, 42, 26, 0.17));
     animation: none !important;
   }
 
