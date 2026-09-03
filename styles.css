@@ -349,15 +349,15 @@ a:hover {
 }
 
 .tape-01 {
-  background-image: url("images/tape-linen-01.svg");
+  background-image: url("images/tape-linen-01.png");
 }
 
 .tape-02 {
-  background-image: url("images/tape-linen-02.svg");
+  background-image: url("images/tape-linen-02.png");
 }
 
 .tape-03 {
-  background-image: url("images/tape-linen-03.svg");
+  background-image: url("images/tape-linen-03.png");
 }
 
 .tape-home-a {
@@ -969,7 +969,7 @@ a:hover {
   left: 20%;
   width: 6rem;
   height: 2rem;
-  background: url("images/tape-linen-02.svg") center / 100% 100% no-repeat;
+  background: url("images/tape-linen-02.png") center / 100% 100% no-repeat;
   filter: drop-shadow(0 0.18rem 0.12rem rgba(51, 42, 26, 0.22));
   mix-blend-mode: multiply;
   opacity: 0.88;
