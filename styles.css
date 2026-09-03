@@ -237,7 +237,7 @@ a:hover {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(17rem, 0.77fr) minmax(30rem, 1.45fr) minmax(7rem, 0.3fr);
+  grid-template-columns: minmax(17rem, 0.72fr) minmax(30rem, 1.38fr) minmax(10rem, 0.46fr);
   gap: clamp(1.25rem, 3vw, 3.6rem);
   align-items: start;
   min-height: calc(100vh - 9rem);
@@ -542,50 +542,69 @@ a:hover {
   50% { opacity: 0; }
 }
 
-.hero-index {
-  display: flex;
+.hero-specimen {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  gap: 0.9rem;
   min-height: 31rem;
-  flex-direction: column;
-  align-items: center;
   padding-left: 1.2rem;
   border-left: 1px solid var(--rule);
 }
 
-.index-number,
-.hero-index p {
+.specimen-coordinate,
+.hero-specimen > p {
+  margin: 0;
+  color: var(--lichen);
   font: 300 0.53rem/1.4 var(--mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   writing-mode: vertical-rl;
 }
 
-.hero-index p {
-  margin: 1.5rem 0 auto;
-  color: var(--lichen);
+.hero-specimen > p {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
-.ink-stem {
-  width: 4.7rem;
-  overflow: visible;
+.mini-folio {
+  align-self: start;
+  width: 100%;
+  margin: 8.5rem 0 0;
 }
 
-.ink-stem path {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
+.mini-folio-paper {
+  position: relative;
+  padding: 0.38rem;
+  background: var(--paper);
+  box-shadow:
+    0 0 0 1px rgba(23, 37, 31, 0.08),
+    0.45rem 0.65rem 0 rgba(23, 37, 31, 0.07),
+    0 1.5rem 2.5rem rgba(39, 34, 24, 0.16);
 }
 
-.is-visible .ink-stem path,
-.ink-stem path {
-  animation: draw-ink 3.2s 0.45s cubic-bezier(0.3, 0.1, 0.2, 1) forwards;
+.mini-folio-paper img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
 }
 
-@keyframes draw-ink {
-  to { stroke-dashoffset: 0; }
+.mini-folio figcaption {
+  margin-top: 0.7rem;
+  color: var(--ink-soft);
+  font: 300 0.52rem/1.45 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tape-mini {
+  --tape-angle: -4deg;
+  --tape-delay: 880ms;
+  top: -0.75rem;
+  left: 18%;
+  width: 5.2rem;
+  height: 1.85rem;
 }
 
 .cabinet {
@@ -1321,8 +1340,40 @@ a:hover {
     grid-template-columns: 0.75fr 1.25fr;
   }
 
-  .hero-index {
-    display: none;
+  .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hero-table {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .hero-specimen {
+    grid-column: 2;
+    grid-row: 2;
+    grid-template-columns: auto 1fr auto;
+    min-height: 0;
+    padding: 1.75rem 0 0;
+    border-top: 1px solid var(--rule);
+    border-left: 0;
+  }
+
+  .specimen-coordinate,
+  .hero-specimen > p {
+    position: static;
+    writing-mode: horizontal-tb;
+  }
+
+  .hero-specimen > p {
+    text-align: right;
+  }
+
+  .mini-folio {
+    width: min(100%, 16rem);
+    margin: 0;
+    justify-self: center;
   }
 
   .specimen-sheet {
@@ -1414,6 +1465,31 @@ a:hover {
 
   .hero-table {
     margin-top: 1rem;
+  }
+
+  .hero-specimen {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.25rem;
+    width: 100%;
+    padding-top: 2rem;
+  }
+
+  .specimen-coordinate {
+    grid-column: 1;
+    align-self: end;
+  }
+
+  .mini-folio {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: min(68%, 17rem);
+    margin-left: auto;
+  }
+
+  .hero-specimen > p {
+    grid-column: 2;
+    align-self: end;
   }
 
   .margin-note {
@@ -1610,10 +1686,6 @@ a:hover {
       drop-shadow(0 0.16rem 0.09rem rgba(51, 42, 26, 0.34))
       drop-shadow(0 0.42rem 0.38rem rgba(51, 42, 26, 0.17));
     animation: none !important;
-  }
-
-  .ink-stem path {
-    stroke-dashoffset: 0;
   }
 
   .type-note [data-type]::after,
