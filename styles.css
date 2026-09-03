@@ -574,6 +574,10 @@ a:hover {
   margin: 8.5rem 0 0;
 }
 
+.js .mini-folio.is-pressed {
+  animation-delay: 320ms;
+}
+
 .mini-folio-paper {
   position: relative;
   padding: 0.38rem;
@@ -600,7 +604,7 @@ a:hover {
 
 .tape-mini {
   --tape-angle: -4deg;
-  --tape-delay: 880ms;
+  --tape-delay: 1080ms;
   top: -0.75rem;
   left: 18%;
   width: 5.2rem;
