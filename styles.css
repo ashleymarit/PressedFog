@@ -262,6 +262,21 @@ a:hover {
   letter-spacing: -0.07em;
 }
 
+.hero h1 {
+  line-height: 0.86;
+  letter-spacing: -0.06em;
+}
+
+.hero h1 > span,
+.hero h1 > em {
+  display: block;
+}
+
+.hero h1 > em {
+  margin: 0.22em 0 0.26em;
+  line-height: 0.92;
+}
+
 .hero h1 em,
 .page-intro h1 em {
   color: var(--lichen);
@@ -402,16 +417,6 @@ a:hover {
   bottom: -0.18rem;
   width: 8rem;
   height: 2.7rem;
-}
-
-.tape-home-c {
-  --tape-angle: 88deg;
-  --tape-delay: 1180ms;
-  top: 41%;
-  left: -2.3rem;
-  width: 7rem;
-  height: 2.35rem;
-  --tape-opacity: 0.9;
 }
 
 .tape-fern-a {
