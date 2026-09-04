@@ -263,8 +263,8 @@ a:hover {
 }
 
 .hero h1 {
-  line-height: 0.82;
-  letter-spacing: -0.064em;
+  line-height: 0.86;
+  letter-spacing: -0.06em;
 }
 
 .hero h1 > span,
@@ -273,8 +273,8 @@ a:hover {
 }
 
 .hero h1 > em {
-  margin: 0.1em 0 0.14em;
-  line-height: 0.86;
+  margin: 0.22em 0 0.26em;
+  line-height: 0.92;
 }
 
 .hero h1 em,
